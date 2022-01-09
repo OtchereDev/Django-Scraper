@@ -3,13 +3,18 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 import cssutils
-
+import os
 
 from bs4 import BeautifulSoup
 
 opt = Options()
 
+
+opt.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 opt.add_argument("--headless")
+opt.add_argument("--disable-dev-shm-usage")
+opt.add_argument("--no-sandbox")
+ 
 
 
 
