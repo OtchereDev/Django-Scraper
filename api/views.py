@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
-from api.firebase.firestoreConfig import filterByField, getCompanyNames, getJobTags
+from api.firebase.firestoreConfig import filterByField, getCompanyLocation, getCompanyNames, getJobTags
 from rest_framework import status
 
 from api.main import getJobs
@@ -129,3 +129,14 @@ class GetJobs(GenericAPIView):
 
         except:
             return Response({"error":"Sorry could not handle the request"},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+class GetJobsLocation(GenericAPIView):
+    def get(self,request,*args,**kwargs):
+        try:
+            locations = getCompanyLocation()
+
+            return Response({"locations":locations},status=status.HTTP_200_OK)
+
+        except:
+            return Response({"error":"Sorry could not handle the request"},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+

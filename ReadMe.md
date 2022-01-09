@@ -15,6 +15,7 @@ python manage.py runserver
 http://localhost:8000/get-refresh-jobs/
 http://localhost:8000/get-companies/
 http://localhost:8000/get-tags/
+http://localhost:8000/get-locations/
 http://localhost:8000/get-filter-job-tag/
 http://localhost:8000/get-filter-job-salary/
 http://localhost:8000/get-filter-job-created_at/

@@ -98,3 +98,17 @@ def filterByField(field:str,value:str):
             selected.append(doc.to_dict())
 
     return selected
+
+def getCompanyLocation():
+    documents = db.collection('Jobs')
+    docs = documents.stream()
+    locations = []
+    
+    for doc in docs:
+        location = u'{}'.format(doc.to_dict().get("location"))
+        if location:
+            locations.append(location)
+
+    locations = set(locations)
+
+    return list(locations)
