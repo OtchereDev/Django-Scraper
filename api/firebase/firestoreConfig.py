@@ -62,25 +62,29 @@ def filterByField(field:str,value:str):
     documents = db.collection('Jobs')
     docs = documents.stream()
     selected = []
+
+    value = value.lower()
     
     for doc in docs:
         if field == "company_name":
             selected_value = doc.to_dict().get("Company Name")
 
-            if value in selected_value:
+            if value in selected_value.lower():
                 selected.append(doc.to_dict())
 
         elif field == "tag":
             selected_value = doc.to_dict().get("tags")
 
-            if value in selected_value:
-                selected.append(doc.to_dict())
+            if selected_value:
+                if value in " ".join(selected_value).lower():
+                    selected.append(doc.to_dict())
 
         elif field == "location":
             selected_value = doc.to_dict().get("location")
-
-            if value in selected_value:
-                selected.append(doc.to_dict())
+            
+            if selected_value:
+                if value in selected_value.lower():
+                    selected.append(doc.to_dict())
 
         elif field == "salary":
             selected_value = doc.to_dict().get("salary")

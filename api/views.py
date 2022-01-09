@@ -56,7 +56,7 @@ class GetFilteredJobsByTag(GenericAPIView):
     def get(self,request,*args,**kwargs):
         try:
             name = request.GET.get("tag")
-
+            
             if not name:
                 return Response({"error":"Sorry could not handle the request"},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
@@ -64,15 +64,14 @@ class GetFilteredJobsByTag(GenericAPIView):
             value = filterByField("tag",name)  
 
             return Response({"result":value},status=status.HTTP_200_OK)
-
-        except:
+        except Exception as e:
             return Response({"error":"Sorry could not handle the request"},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 class GetFilteredJobsByLocation(GenericAPIView):
     def get(self,request,*args,**kwargs):
         try:
             name = request.GET.get("location")
-
+            print("ll:",name)
             if not name:
                 return Response({"error":"Sorry could not handle the request"},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
@@ -81,7 +80,8 @@ class GetFilteredJobsByLocation(GenericAPIView):
 
             return Response({"result":value},status=status.HTTP_200_OK)
 
-        except:
+        except Exception as e:
+            print("ee:",e)
             return Response({"error":"Sorry could not handle the request"},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 class GetFilteredJobsBySalary(GenericAPIView):
